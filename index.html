@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>HOST DISCOVERY NSE script &mdash; Nmap Scripting Engine documentation</title>
+<meta name="description" content="How to use the host discovery NSE script: examples, script-args, and references.">
+
+<link rel="stylesheet" href="../luadoc.css" type="text/css">
+<script async src="../luadoc.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2A0D45">
+
+
+<!--END Google Analytics Code-->
+<META NAME="ROBOTS" CONTENT="NOARCHIVE">
+  <style>
+    body {
+    background-color: #2a0d45;
+    min-width: 300px;
+    width: auto !important;
+    width: 300px;
+}
+body, div, img, table, thead, th, tbody, tr, td {
+    margin: 0px;
+    padding: 0px;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+body {
+    display: block;
+    margin: 20px;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+    #nse-content {
+    background-color: white;
+    overflow-wrap: anywhere;
+}
+body, div, img, table, thead, th, tbody, tr, td {
+    margin: 20px 40px;
+    padding: 20px;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+#nse-main {
+    font-family: arial, helvetica, geneva, sans-serif;
+    margin: 0px 50px;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+  </style>
+
+</head>
+<body>
+    <div id="nst-wrapper">
+
+
+<main id="nst-content">
+<div id="nse-content">
+
+<center><h1><img src="sitelogo.png" alt=""> </h1><h1>NMAP Scripting engine <br>
+  <code>HOST DISCOVERY</code></h1>
+</center>
+
+<h2 id="summary">Script Summary</h2>
+<p>
+It is a basic host detection script that checks whether a given host is up or down using UDP probes
+</p>
+
+
+
+<h2 id="usage">Script</h2>
+
+  <pre>
+ local nmap = require "nmap"
+local socket = require "socket" description = "This is a sample NSE script" author = "" categories = {"default", "discovery", "safe"}
+hostrule = function(host)
+local timeout = 5
+local s = socket.udp()
+s:settimeout(timeout)
+local result, err = s:sendto("", tostring(host), 1)
+if err == "timeout" then
+return false 
+else
+return true 
+end
+end
+action = function(host)
+print("Host ip: " ..host.ip.. " is Detected.")
+end
+
+</pre>
+
+
+
+  <h2 id="output"> Script Output </h2>
+<img src="Screenshot from 2023-04-30 21-11-23.png" alt="">
+
+
+
+ 
+
+<hr/>
+
+
+<p><b>Author:</b>
+<ul class="authors_list">
+<li>Ajith Bala
+
+</ul>
+
+
+
+
+
+</div> <!-- id="nse-content" -->
+</div> <!-- id="nse-main" -->
+</body>
+</html>
+
+
